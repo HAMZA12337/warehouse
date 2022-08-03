@@ -1,0 +1,25 @@
+###
+post http://localhost:3000/categorie/addCategorie HTTP/1.1
+content-type: application/json
+
+{
+      "label_categorie": "Telephone"
+}
+###
+patch http://localhost:3000/categorie/editCategorie/9 HTTP/1.1
+content-type: application/json
+
+{
+      "label_categorie": "PC-TOP"
+}
+
+###
+post http://localhost:3000/categorie/removeCategorie/4 HTTP/1.1
+
+###
+
+get  http://localhost:3000/categorie/getCategories HTTP/1.1
+
+###
+
+get  http://localhost:3000/categorie/getCategorie/9 HTTP/1.1

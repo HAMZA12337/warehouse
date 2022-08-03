@@ -1,0 +1,28 @@
+###
+post http://localhost:3000/brand/addBrand/ 
+content-type: application/json
+
+{
+    "label_Brand":"PC",
+            "id_Categorie":2,
+            "quantite":25
+}
+
+###
+post http://localhost:3000/brand/removeBrand/2
+content-type: application/json
+
+###
+patch http://localhost:3000/brand/editBrand/3 HTTP/1.1
+content-type: application/json
+
+{
+      "label_Brand": "HP PRO",
+      "id_Categorie":2,
+      "quantite":20
+      
+}
+###
+get  http://localhost:3000/brand/getBrands HTTP/1.1
+###
+get  http://localhost:3000/brand/getBrand/3
