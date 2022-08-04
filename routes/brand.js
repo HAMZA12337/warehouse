@@ -29,7 +29,7 @@ router.post("/addBrand",async(req,res)=>
 // delete brand
 
 router.post('/removeBrand/:id',async(req,res)=>{
-
+try{
     const brand= await prisma.brand.delete({
         where:{
          id_Brand:parseInt(req.params.id)
@@ -37,11 +37,14 @@ router.post('/removeBrand/:id',async(req,res)=>{
 })
 const result = brand ? brand : "NULL";
 res.json(result)
+}catch(e){
+    res.json("NULL")
+ }
 })
 
 //edit brand
 router.patch('/editBrand/:id',async(req,res)=>{
-
+try{
     const brand= await prisma.brand.update({
         where:{
          id_Brand:parseInt(req.params.id)
@@ -54,6 +57,9 @@ router.patch('/editBrand/:id',async(req,res)=>{
 })
 const result = brand ? brand : "NULL";
 res.json(result)
+}catch(e){
+   res.json("NULL")
+}
 })
 
 //get all brand
@@ -85,12 +91,25 @@ router.get('/getNbrBrand',async(req,res)=>{
 })
 
 
-//get categorie of the id_brand given 
+//pour chaque categorie retouner les brands cores
 
-router.get('/test',async(req,res)=>{
-    const brand= await prisma.brand.count();
+router.get('/brand_categorie/:id',async(req,res)=>{
+    try{
+    const brand= await prisma.categorie.findUnique({
+        where:{
+              id_Categorie:parseInt(req.params.id)
+        },
+        include: {
+
+            Brand : true,
+        },
+    });
     const result = brand ? brand : "NULL";
     res.json(result)
+    }catch(e){
+        res.json('NULL')
+    }
+
 })
 
 

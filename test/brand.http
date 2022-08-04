@@ -3,26 +3,34 @@ post http://localhost:3000/brand/addBrand/
 content-type: application/json
 
 {
-    "label_Brand":"PC",
-            "id_Categorie":2,
+    "label_Brand":"Orange",
+            "id_Categorie":3,
             "quantite":25
 }
 
 ###
-post http://localhost:3000/brand/removeBrand/2
+post http://localhost:3000/brand/removeBrand/12222
 content-type: application/json
 
 ###
-patch http://localhost:3000/brand/editBrand/3 HTTP/1.1
+patch http://localhost:3000/brand/editBrand/11115 HTTP/1.1
 content-type: application/json
 
 {
-      "label_Brand": "HP PRO",
-      "id_Categorie":2,
+      "label_Brand": "Maroc telecome",
+      "id_Categorie":3,
       "quantite":20
       
 }
 ###
 get  http://localhost:3000/brand/getBrands HTTP/1.1
 ###
-get  http://localhost:3000/brand/getBrand/3
+get  http://localhost:3000/brand/getBrand/1222
+
+###
+get  http://localhost:3000/brand/getNbrBrand
+
+###
+get  http://localhost:3000/brand/brand_categorie/1233
+
+

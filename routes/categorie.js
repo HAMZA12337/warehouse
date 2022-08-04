@@ -28,6 +28,7 @@ router.post("/addCategorie",async(req,res)=>
 
 router.patch("/editCategorie/:id",async(req,res)=>
 {
+  try{
  const categorie= await prisma.categorie.update({
     where :{
 
@@ -40,12 +41,16 @@ router.patch("/editCategorie/:id",async(req,res)=>
         })
         const result = categorie ? categorie : "NULL";
         res.json(result)
+      }catch(e){
+        res.json("NULL")
+     }
 
 })
 
 // remove categorie
 
 router.post("/removeCategorie/:id",async(req,res)=>{
+  try{
     const categorie= await prisma.categorie.delete({
     where:{
         id_Categorie:parseInt(req.params.id)
@@ -54,7 +59,9 @@ router.post("/removeCategorie/:id",async(req,res)=>{
   })
   const result = categorie ? categorie : "NULL";
   res.json(result)
-  
+}catch(e){
+  res.json("NULL")
+}
   })
   
 // get all categorie

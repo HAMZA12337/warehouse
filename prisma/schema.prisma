@@ -39,8 +39,8 @@ model Brand {
 
 model Product {
   id_Product  Int     @id @default(autoincrement())
-  model       String
-  serie       String
+  model       String? 
+  serie       String @unique
   description String?
   //false = bon etat
   etat        Boolean @default(false)

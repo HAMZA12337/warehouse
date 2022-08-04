@@ -1,0 +1,45 @@
+###
+###
+post http://localhost:3000/product/addProduct/ 
+content-type: application/json
+
+{
+            "model":"dssd",
+            "serie":"cddcscdds dfxvffv cdd",
+            "description":"cvvcdcdd",
+            "id_Brand":6
+}
+
+###
+post http://localhost:3000/product/removeProduct/1
+content-type: application/json
+
+###
+patch http://localhost:3000/product/editProduct/3 HTTP/1.1
+content-type: application/json
+
+{
+            "model":"",
+            "serie":"cdd mmdfxvffv cdd",
+            "etat":true,
+            "description":"cvvcdcdd",
+            "id_Brand":6
+}
+      
+
+###
+get  http://localhost:3000/product/getProducts HTTP/1.1
+###
+get  http://localhost:3000/product/getProduct/3
+
+###
+get  http://localhost:3000/product/getNbrProduct
+###
+
+get  http://localhost:3000/product/ProductG
+###
+get  http://localhost:3000/product/ProductB
+###
+get  http://localhost:3000/product/AllProduct/3
+###
+get  http://localhost:3000/product/AllProduct-Brand/3/6

@@ -65,6 +65,7 @@ router.get("/getUsers",async(req,res)=>{
 // remove user 
 
 router.post("/removeUser/:id",async(req,res)=>{
+  try{
   var users= await prisma.user.delete({
   where:{
     id_USER: parseInt(req.params.id),
@@ -73,6 +74,9 @@ router.post("/removeUser/:id",async(req,res)=>{
 })
   const resultat = users ? users : "NULL";
   res.json(resultat)
+}catch(e){
+  res.json("NULL")
+}
 
 })
 
@@ -80,7 +84,7 @@ router.post("/removeUser/:id",async(req,res)=>{
 // edit information of user 
 
 router.patch("/editUser/:id",async(req,res)=>{
-
+try{
   const updateUser = await prisma.user.update({
       where: {
         id_USER:parseInt(req.params.id)
@@ -95,6 +99,9 @@ router.patch("/editUser/:id",async(req,res)=>{
       }
     })
     res.send(updateUser)
+  }catch(e){
+    res.json("NULL")
+ }
 })
 
 
