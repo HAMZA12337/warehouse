@@ -10,6 +10,7 @@ const { PrismaClient } = require("@prisma/client");
 const res = require("express/lib/response");
 const app = require('../app');
 const { patch } = require('.');
+const { Router } = require('express');
 const prisma = new PrismaClient();
 
 
@@ -58,11 +59,12 @@ router.patch('/Daccount/:id',async(req,res)=>{
     })
     
     
+
 // login
 
 // il faut implementer JWT
 router.post('/login',async(req,res)=>{
-
+try{
     const body = req.body;
     const user = await prisma.user.findUnique({
       where: {
@@ -70,25 +72,81 @@ router.post('/login',async(req,res)=>{
         
       },
     })
-  
+    
    
     if (user) {
        // check user password with hashed password stored in the database
       const validPassword = await bcrypt.compare(body.password, user.password);
       if (validPassword) {
-        res.status(200).json({ error: "Valid password" });
-      } else {
+        const refreshTokens=[] ;
+      console.log(user.email)
+     const id=user.User;
+     const email=user.email;
+     const first_name=user.nom;
+     const last_name=user.prenom;
+     const function_=user.fonction;
+     const role=user.role;
+     const state=user.state; 
+      const accessToken = jwt.sign({id,email,first_name,last_name,function_,role,state}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
+      const refreshToken = jwt.sign({id,email,first_name,last_name,function_,role,state}, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' })
+      await prisma.user.update({
+        where: {
+          email:req.body.email 
+    
+        },data :{
+        refresh_token:refreshToken
+}
+})
+        // res.status(200).json({ error: "Valid password" });
+        
+       res.cookie('refreshToken',refreshToken,{
+        httpOnly:true,
+        maxeAge:24*60*60*1000
+       });
+       res.status(200).json({ accessToken: accessToken, refreshToken: refreshToken })
+      } else { 
         res.status(400).json({ error: "Invalid Password" });
       }
     } else {
       res.status(401).json({ error: "User does not exist" });
      }
-  
-
+     
+    }catch(e){
+       res.status(404).json({msg:e})
+    } 
+      
 })
 
 // logout 
 
+router.delete('/logout',async(req,res)=>{
+
+  const refreshToken=req.cookies.refreshToken;
+  if(!refreshToken)  return res.sendStatus(401)
+  const user= await prisma.user.findUnique({
+    where:{
+      refresh_token:refreshToken
+    }
+  })
+ if(!user) return res.sendStatus(403)
+console.log('user.id_USER='+user.id_USER)
+ const upd=await prisma.user.update({
+  where: {
+    id_USER:parseInt(user.id_USER)
+
+  },
+  data: {
+    refresh_token:null
+  }
+ }) 
+
+
+ res.clearCookie('refreshToken')
+  return res.sendStatus(200)
+
+
+
+})
 
 
 
@@ -166,9 +224,7 @@ router.post('/login',async(req,res)=>{
 
 
 // // generate the the token=hashage de mot de passe + la duree  de toke
-// function generateAccessToken(user) {
-//   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
-// }
+
 
 // // edite password 
 

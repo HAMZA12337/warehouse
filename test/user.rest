@@ -1,0 +1,36 @@
+###
+post  http://localhost:3001/users/addUser HTTP/1.1
+content-type: application/json
+
+{
+    "email":"saida.imi33@gmail.com",
+    "nom": "saidqs",
+    "prenom":"BRAIMsqqsI",
+    "fonction":"Directeur",
+    "password": "12345678"
+}
+###
+get  http://localhost:3001/users/getUser/5
+
+
+###
+get  http://localhost:3001/users/getUsers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaWQuaW1pMzNAZ21haWwuY29tIiwiZmlyc3RfbmFtZSI6InNhaWQiLCJsYXN0X25hbWUiOiJCUkFJTUkiLCJmdW5jdGlvbl8iOiJEaXJlY3RldXIiLCJyb2xlIjoiVVNFUiIsInN0YXRlIjp0cnVlLCJpYXQiOjE2NjA1NTA1NDEsImV4cCI6MTY2MDYzNjk0MX0.AyUYNb4_ndvOLfo_f0nsJT4FuYU__r-592GBLE2vVXo
+
+
+
+###
+
+post  http://localhost:3001/users/removeUser/14
+
+###
+patch  http://localhost:3001/users/editUser/18
+content-type: application/json
+
+{
+    "email":"saida.imi33@gmail.com",
+    "nom": "saida",
+    "prenom":"BRxa",
+    "fonction":"Directeur",
+    "password": "12345678"
+}

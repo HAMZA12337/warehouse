@@ -19,6 +19,8 @@ model User {
   fonction String
   role     Role    @default(USER)
   state    Boolean @default(true)
+  refresh_token String? @unique
+  
 }
 
 model Categorie {
