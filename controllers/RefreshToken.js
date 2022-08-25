@@ -10,9 +10,9 @@ const prisma = new PrismaClient();
 
 
 router.get('/getToken',async(req,res)=>{
-  
+  try{
 const refreshToken=req.cookies.refreshToken;
-   console.log(refreshToken)
+   console.log('KLKL'+refreshToken)
 if(!refreshToken) return res.sendStatus(401);
 
 const user=await prisma.user.findUnique({
@@ -38,7 +38,9 @@ jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET, (err,decoded)=>{
     });
 
 
-
+  }catch(error){
+    res.send(error)
+  }
 
 
    

@@ -1,5 +1,5 @@
 ###
-post http://localhost:3000/brand/addBrand/ 
+post http://localhost:3001/brand/addBrand/ 
 content-type: application/json
 
 {

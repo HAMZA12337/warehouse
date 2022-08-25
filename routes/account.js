@@ -100,9 +100,10 @@ try{
         // res.status(200).json({ error: "Valid password" });
         
        res.cookie('refreshToken',refreshToken,{
-        httpOnly:true,
-        maxeAge:24*60*60*1000
+         maxeAge:24*60*60*1000,
+        httpOnly: true,
        });
+       
        res.status(200).json({ accessToken: accessToken, refreshToken: refreshToken })
       } else { 
         res.status(400).json({ error: "Invalid Password" });

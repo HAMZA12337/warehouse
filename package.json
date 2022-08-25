@@ -17,9 +17,10 @@
     "loader": "^2.1.1",
     "module": "^1.2.5",
     "morgan": "~1.9.1",
+    "node-localstorage": "^2.2.1",
     "nodemon": "^2.0.19"
   },
   "devDependencies": {
-    "prisma": "^4.1.1"
+    "prisma": "^4.2.1"
   }
 }

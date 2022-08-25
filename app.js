@@ -16,7 +16,10 @@ var productRouter = require('./routes/product');
 var tokenRouter = require('./controllers/RefreshToken');
 
 var app = express();
-app.use(cors())
+
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
+// app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,7 +34,6 @@ app.use('/brand', brandRouter);
 app.use('/product', productRouter);
 app.use('/token', tokenRouter);
 
-// app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 //  routes to be accessed anywhere
 
 

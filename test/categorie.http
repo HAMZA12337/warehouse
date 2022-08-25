@@ -1,12 +1,12 @@
 ###
-post http://localhost:3000/categorie/addCategorie HTTP/1.1
+post http://localhost:3001/categorie/addCategorie HTTP/1.1
 content-type: application/json
 
 {
-      "label_categorie": "CARTE SIM"
+      "label_categorie": "IMPRIMANTE"
 }
 ###
-patch http://localhost:3000/categorie/editCategorie/9 HTTP/1.1
+patch http://localhost:3001/categorie/editCategorie/9 HTTP/1.1
 content-type: application/json
 
 {
@@ -14,12 +14,12 @@ content-type: application/json
 }
 
 ###
-post http://localhost:3000/categorie/removeCategorie/4 HTTP/1.1
+post http://localhost:3001/categorie/removeCategorie/4 HTTP/1.1
 
 ###
 
-get  http://localhost:3000/categorie/getCategories HTTP/1.1
+get  http://localhost:3001/categorie/getCategories HTTP/1.1
 
 ###
 
-get  http://localhost:3000/categorie/getCategorie/9 HTTP/1.1
+get  http://localhost:3001/categorie/getCategorie/9 HTTP/1.1
